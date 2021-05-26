@@ -1,0 +1,60 @@
+{% extends 'poison/base.html' %}
+{% load static %}
+
+{% block content%}
+
+<section class="home-news">
+    <div class="container">
+        <h1><a href="">poison news<span>.</span></a></h1>
+        <h2>latest articles</h2>
+
+    <!--Sliders-->
+        <ul class="slide">
+        {% for p in posts %}
+        <li>
+            {% if p.photo %}
+                <a href="{{ p.get_absolute_url }}"><img src="{{p.photo.url}}" alt=""></a>
+            {% endif %}
+            <div class="slide-box">
+                <h2>{{p.title}}</h2>
+                <p><em>by poison - {{p.time_create|date:'d E Y' }}</em></p>
+            </div>
+            <a href="{{ p.get_absolute_url }}" class="bottom-link">read full article</a>
+        </li>
+        {% endfor %}
+        </ul>
+        <!--End Sliders-->
+    </div>
+</section>
+
+    <section class="story">
+        <div class="container">
+            <h1>their amazing story</h1>
+            <h2>how they came to be famouse</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ligula, mollis eget ipsum a,
+                aliquet
+                pellentesque nisi. Donec mollis vel orci eget consequat. Etiam ultrices eu erat eu facilisis. Morbi nec
+                suscipit tortor. Sed eu est leo. Phasellus a enim a sem auctor sodales. Vestibulum interdum ultrices
+                tincidunt. Vivamus suscipit odio id pretium commodo. Donec vitae pellentesque dui. Nullam a hendrerit
+                mi,
+                vel placerat neque. Nunc et nunc turpis. Mauris sed congue lectus, ut blandit diam. Sed pellentesque
+                egestas
+                magna in feugiat. Praesent in ipsum velit. Pellentesque habitant morbi tristique senectus et netus et
+                malesuada fames ac turpis egestas.</p>
+            <p>Quisque lacinia euismod lobortis. Pellentesque purus orci, consequat vel mi id, pretium accumsan urna. In
+                hac
+                habitasse platea dictumst. Aenean ut accumsan nunc. Nam ac bibendum mi. Maecenas ultricies blandit
+                vehicula.
+                Nullam posuere metus congue odio dictum vestibulum. Quisque pharetra, nisl sit amet fermentum dignissim,
+                est
+                felis consequat sapien, eu pellentesque nulla mi sed lacus. Aenean molestie condimentum consequat.</p>
+            <p>Sed a lectus suscipit, blandit arcu a, vehicula nisi. Quisque faucibus elit ac mauris sodales auctor.
+                Quisque
+                scelerisque aliquam accumsan. Donec ullamcorper tortor nec nisl egestas, vitae interdum diam dignissim.
+                Donec sollicitudin eu tellus in fermentum. Ut eu dui sit amet erat euismod euismod in non turpis.
+                Pellentesque luctus dui massa.</p>
+        </div>
+    </section>
+
+{% endblock %}
+

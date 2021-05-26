@@ -1,0 +1,22 @@
+{% extends 'poison/base.html' %}
+
+{% block content %}
+
+<section class="connect">
+    <div class="container">
+        <form method="post">
+        <h2>please, write your question</h2>
+        {% csrf_token %}
+
+{% for f in form %}
+<p><label class="form-connect" for="{{ f.id_for_label }}">{{f.label}} </label>
+            <hr>{{ f }}</p>
+<div class="form-error">{{ f.errors }}</div>
+{% endfor %}
+            <button type="submit">send message</button>
+        </form>
+
+    </div>
+</section>
+
+{% endblock %}

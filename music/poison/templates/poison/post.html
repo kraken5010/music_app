@@ -1,0 +1,40 @@
+{% extends 'poison/base.html' %}
+{% load poison_tags %}
+
+{% block content %}
+<section class="news">
+    <div class="container">
+        <div class="leftbar">
+            <ul class="category">
+                {% if cat_selected == 0 %}
+                <li class="years">all years</li>
+                {% else %}
+                <li><a href="{% url 'news' %}">all years</a></li>
+                {% endif %}
+
+                {% for c in cats %}
+                        {% if c.news__count > 0 %}
+                            {% if c.pk == cat_selected %}
+                            <li class="selected">{{c.name}}</li>
+                            {% else %}
+                            <li><a href="{{ c.get_absolute_url }}">{{c.name}}</a></li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+            </ul>
+        </div>
+
+        <div class="content-news">
+            <div class="post-content">
+            <h2>{{post.title}}</h2>
+
+            {% if post.photo %}
+            <img src="{{post.photo.url}}" alt="">
+            {% endif %}
+
+            <p>{{post.content|linebreaks}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

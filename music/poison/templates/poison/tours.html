@@ -1,0 +1,44 @@
+{% extends 'poison/base.html' %}
+
+{% block content %}
+
+<section class="tours">
+            <div class="container">
+                <div class="top-title">
+                    <h1>performing live!</h1>
+                    <h2>stars tour de paris</h2>
+                    <h3>november 5th 2021</h3>
+                </div>
+                <h1>poison tours<span>.</span></h1>
+                <h2>all tours this year</h2>
+
+                <div class="tickets">
+                    <ul class="title-tickets">
+                        <li>date</li>
+                        <li>group name</li>
+                        <li>location</li>
+                        <li>venue</li>
+                        <li>tickets</li>
+                    </ul>
+                    <ul class="list-tickets">
+                        {% for t in tours %}
+                        <li>
+                            <ul class="line-tickets">
+                                <li>{{t.date}}</li>
+                                <li>{{t.group_name}}</li>
+                                <li>{{t.location}}</li>
+                                <li>{{t.venue}}</li>
+                                {% if t.tickets == True %}
+                                <li><a href="#">buy tickets</a></li>
+                                {% else %}
+                                <li class="sold-out">sold out</li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}

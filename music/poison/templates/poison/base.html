@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>{{title}}</title>
+    <meta name="description" content="" />
+    <meta http-equiv="X-UA-Compatible" content="\e234" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'poison/css/styles.css' %}">
+    <link rel="shortcut icon" href="{% static 'poison/images/logo2.png' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+
+{% block mainmenu %}
+<header id="header" class="header lock-padding">
+    <div class="container">
+        <a href="{% url 'home' %}" class="logo"><img src="{% static 'poison/images/logo.png' %}" alt=""></a>
+        <a href="#" class="touch-menu"><i class="fa fa-bars"></i></a>
+        <nav>
+            <ul class="menu clearfix">
+                {% for m in menu %}
+                <li><a href="{% url m.url_name %}">{{m.title}}</a></li>
+                {% endfor %}
+
+                {% if request.user.is_authenticated %}
+                <li><a href="">{{user.username}}</a></li>
+                <li><a href="{% url 'logout' %}">Log Out</a></li>
+                {% else %}
+                <li><a href="{% url 'register' %}">sign up</a>
+                    <a href="{% url 'login' %}">sign in</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>
+{% endblock mainmenu %}
+
+{% block content %}
+
+{% endblock %}
+
+<footer>
+    <a href="#" class="soc-link">get social</a>
+    <a href="#" class="mess-link">get social</a>
+    <div class="container clearfix">
+        <ul class="links">
+            <li><a href="#"><i class="fa fa-music"></i>poison itunes</a></li>
+            <li><a href="#"><i class="fa fa-cloud"></i>poison soundcloud</a></li>
+            <li><a href="#"><i class="fa fa-youtube"></i>poison youtube</a></li>
+        </ul>
+        <ul class="links">
+            <li><a href="#"><i class="fa fa-instagram"></i>poison instagram</a></li>
+            <li><a href="#"><i class="fa fa-flickr"></i>poison flicker</a></li>
+            <li><a href="#"><i class="fa fa-pinterest"></i>poison pinterest</a></li>
+        </ul>
+        <h5>&copy; 2001 - 2021 by poison music.</h5>
+    </div>
+</footer>
+</div>
+
+{% block popup %}
+<div id="popup" class="popup">
+        <div class="popup-body">
+            <div class="popup-content">
+                <a href="#header" class="popup-close close-popup"><i class="fa fa-times"></i></a>
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    <h2>add your photo</h2>
+                    {{ form.as_p }}
+                    <p><label for="">Download photo</label></p>
+                    <input type="text">
+                    <p><label for="">select album</label></p>
+                    <input type="email">
+                </form>
+                <button type="submit">add photo</button>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'poison/js/script.js' %}"></script>
+{% endblock %}
+</body>
+</html>

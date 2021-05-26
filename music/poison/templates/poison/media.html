@@ -1,0 +1,24 @@
+{% extends 'poison/base.html' %}
+
+{% block content %}
+
+<section class="media">
+    <div class="container">
+        <h1>poison media<span>.</span></h1>
+        <h2>photos & videos</h2>
+        <ul class="media-list">
+            {% for a in albums %}
+            <li class="media-item">
+                <img src="{{a.image.url}}" alt="">
+                <h3>{{a.title}}</h3>
+                <h4>{{a.photo__count}} photo</h4>
+                <div class="drop-block">
+                    <a href="{{a.get_absolute_url}}"><p>view</p></a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+{% endblock %}
